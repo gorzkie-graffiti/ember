@@ -3,6 +3,9 @@
 A Claude-style AI chat app: real streaming, vision, persistent memory,
 artifacts, and a multi-provider model picker.
 
+<img width="1014" height="791" alt="image" src="https://github.com/user-attachments/assets/e159a41a-0875-43eb-bb6d-94f7e8192759" />
+
+
 **Stack:** Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · shadcn/ui ·
 Prisma + SQLite · OpenAI-compatible provider gateways (Groq, Cohere, G4F,
 NVIDIA, OpenRouter)
@@ -12,7 +15,7 @@ NVIDIA, OpenRouter)
 ## 0. Accounts, access requests & the admin panel
 
 Ember is **invite-only**. Nothing except the marketing surface is reachable
-without an approved account.
+without an approved account (unless you want to self-host).
 
 | Route          | Who can see it | What it is                                              |
 | -------------- | -------------- | ------------------------------------------------------- |
