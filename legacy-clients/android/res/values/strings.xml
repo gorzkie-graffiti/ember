@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ember</string>
+    <string name="send">Send</string>
+    <string name="input_hint">Message Ember…</string>
+    <string name="thinking">Ember is thinking…</string>
+    <string name="error_prefix">Ember error</string>
+    <string name="welcome">Ember is your AI assistant. Ask anything.</string>
+</resources>

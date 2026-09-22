@@ -1,0 +1,97 @@
+// Ember — AI Chat persistence schema.
+//
+// The full client document (conversation / memory / artifact doc as shaped by
+// the frontend stores) is stored wholesale in `data Json`, which is the source
+// of truth. `id` is lifted into a real column for direct lookup, plus a few
+// convenience columns for cheap listing/sorting without parsing the JSON.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/**
+ * A registered account. Access is gated by `status`: a new sign-up lands as
+ * `pending` and only becomes usable once an admin approves it. `codeHash` is
+ * the SHA-256 of the one-time sign-in code shown at registration (never the
+ * code itself). `keys` stores that user's own provider API keys — a JSON map
+ * of provider id → key — so every account brings its own credentials.
+ */
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  /** Why the person wants access — shown to the admin when reviewing. */
+  reason    String   @default("")
+  /** pending | approved | rejected | revoked */
+  status    String   @default("pending")
+  /** user | admin */
+  role      String   @default("user")
+  codeHash  String   @default("")
+  /** Per-user provider API keys: { "groq": "gsk_…", … } (server-side only). */
+  keys      Json
+  /** Set when an admin regenerates a sign-in code (one-time display). */
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  conversations Conversation[]
+  memories      MemoryEntry[]
+  artifacts     Artifact[]
+  prefs         MemoryPrefs[]
+
+  @@index([status])
+  @@index([email])
+}
+
+model Conversation {
+  id        String   @id
+  title     String?
+  data      Json
+  /** Owning account. Null only for pre-auth rows. */
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([updatedAt])
+  @@index([userId, updatedAt])
+}
+
+model MemoryEntry {
+  id        String   @id
+  data      Json
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([userId, createdAt])
+}
+
+/** One row per account (id = "user:<userId>") holding memory feature prefs. */
+model MemoryPrefs {
+  id        String   @id
+  data      Json
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Artifact {
+  id        String   @id
+  data      Json
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([userId, createdAt])
+}

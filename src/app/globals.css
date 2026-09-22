@@ -1,0 +1,535 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Motion tokens — custom curves, never stock ease-in-out (design-engineering house style) */
+  --ease-expo: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-swift: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-styrene, var(--font-geist-sans));
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-copernicus, var(--font-instrument-serif));
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-composer: var(--composer);
+  --color-composer-border: var(--composer-border);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  /* Claude surfaces */
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-clay: var(--clay);
+  --color-clay-emphasized: var(--clay-emphasized);
+  --color-clay-dark: var(--clay-dark);
+  --color-border-strong: var(--border-strong);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.5rem;
+  /* ----- Claude light theme: warm oat surfaces on a paper canvas -----
+   * Extracted from claude.ai snapshot CSS (--cds-surface-*, --cds-gray-*).
+   * User message bg = --cds-bg-neutral (alpha-1 ink) over the canvas.
+   * Radius-card = --cds-radius + 4px = 12px; composer radius = 12px. */
+  --surface-1: #fcfcfb; /* page canvas (gray-10) */
+  --surface-2: #f0efec; /* sidebar: mix(surface-0 50%, surface-1) ≈ gray-50 */
+  --surface-3: #f0efec; /* composer field (bg-neutral over canvas) */
+  --user-bubble: rgba(27, 27, 25, 0.05); /* --cds-bg-neutral: alpha-1 */
+  --background: var(--surface-1);
+  --foreground: #1a1a19; /* gray-830 */
+  --card: #ffffff;
+  --card-foreground: #1a1a19;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a19;
+  --primary: #d97757; /* clay */
+  --primary-foreground: #ffffff;
+  --secondary: #f0efec;
+  --secondary-foreground: #3d3d3a;
+  --muted: #f0efec;
+  --muted-foreground: #6d6b67; /* gray-500 */
+  --muted: #f0efec;
+  --accent: #eae9e4;
+  --accent-foreground: #1a1a19;
+  --destructive: #cd2054;
+  --border: rgba(11, 11, 11, 0.08);
+  --border-strong: rgba(11, 11, 11, 0.16);
+  --input: rgba(11, 11, 11, 0.12);
+  --ring: rgba(11, 11, 11, 0.2);
+  --sidebar: var(--surface-2);
+  --sidebar-foreground: #3d3d3a;
+  --sidebar-primary: #d97757;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(11, 11, 11, 0.05); /* df-hover: alpha-1 */
+  --sidebar-accent-foreground: #1a1a19;
+  --sidebar-border: rgba(11, 11, 11, 0.06);
+  --sidebar-ring: rgba(11, 11, 11, 0.2);
+  --composer: #f6f6f4; /* gray-30 field */
+  --composer-border: transparent;
+  --clay: #d97757;
+  --clay-emphasized: #c6613f;
+  --clay-dark: #b85537;
+  --clay-soft: rgba(217, 119, 87, 0.12);
+}
+
+.dark {
+  /* ----- Claude dark theme: gray-850 canvas, gray-830 sidebar (snapshot exact) ----- */
+  --surface-1: #151515; /* gray-850 canvas */
+  --surface-2: #1a1a19; /* sidebar: mix(page 80%, black) ≈ gray-830 */
+  --surface-3: #20201f; /* composer: gray-800 */
+  --user-bubble: rgba(255, 255, 255, 0.07);
+  --background: var(--surface-1);
+  --foreground: #f0efec; /* text-primary dark = gray-50 */
+  --card: #20201f;
+  --card-foreground: #f0efec;
+  --popover: #1f1f1e;
+  --popover-foreground: #f0efec;
+  --primary: #d97757;
+  --primary-foreground: #ffffff;
+  --secondary: #262625;
+  --secondary-foreground: #e1e0d9;
+  --muted: #262625;
+  --muted-foreground: #97958d; /* gray-350 */
+  --accent: #2c2c2a;
+  --accent-foreground: #f0efec;
+  --destructive: #ff6159;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: rgba(255, 255, 255, 0.2);
+  --sidebar: var(--surface-2);
+  --sidebar-foreground: #c3c2b7;
+  --sidebar-primary: #d97757;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(255, 255, 255, 0.09); /* df-hover dark: fill-ghost-hover */
+  --sidebar-accent-foreground: #f0efec;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-ring: rgba(255, 255, 255, 0.2);
+  --composer: #20201f;
+  --composer-border: transparent;
+  --clay: #d97757;
+  --clay-emphasized: #c6613f;
+  --clay-dark: #e08a6d;
+  --clay-soft: rgba(217, 119, 87, 0.16);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-tap-highlight-color: transparent;
+    font-optical-sizing: auto;
+    /* Claude's UI weight: lighter than default 400 */
+    font-weight: 360;
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  ::selection {
+    background: rgba(217, 119, 87, 0.28);
+  }
+}
+
+/* ---------- Film grain (fixed, pointer-events-none, GPU-cheap) ---------- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.021;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ---------- Tactile press feedback ---------- */
+.press {
+  transition: transform 160ms var(--ease-expo);
+}
+.press:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Claude composer: surface field + shadow-composer recipe ----------
+ * shadow-composer: 0 .25rem 1.25rem black/3.5%, inset ring 1px border-strong.
+ * radius: --cds-radius-composer = 12px. Focus deepens to black/7.5%. */
+.composer-shell {
+  border-radius: 12px;
+  background: var(--composer);
+  padding: 0;
+  border: none;
+  box-shadow:
+    0 0.25rem 1.25rem rgba(0, 0, 0, 0.035),
+    inset 0 0 0 1px var(--border);
+  transition: box-shadow 200ms var(--ease-spring);
+}
+:root:not(.dark) .composer-shell {
+  box-shadow:
+    0 0.25rem 1.25rem rgba(0, 0, 0, 0.05),
+    inset 0 0 0 1px var(--border);
+}
+.composer-shell:focus-within {
+  box-shadow:
+    0 0.25rem 1.25rem rgba(0, 0, 0, 0.075),
+    inset 0 0 0 1px var(--border-strong);
+}
+.composer-core {
+  border-radius: inherit;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* ---------- Claude greeting: serif display, weight 330-360 ---------- */
+.claude-greeting {
+  font-family: var(--font-copernicus, var(--font-instrument-serif));
+  font-variation-settings: "opsz" 48;
+  font-weight: 330;
+  font-size: 2.375rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+@media (max-width: 640px) {
+  .claude-greeting {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- Claude wordmark: serif voice, wght 500, size 20 ---------- */
+.claude-wordmark {
+  font-family: var(--font-copernicus, var(--font-instrument-serif));
+  font-size: 20px;
+  font-weight: 500;
+  font-optical-sizing: auto;
+  line-height: 1;
+  letter-spacing: 0;
+  margin-left: -0.1em;
+}
+
+/* ---------- Assistant response voice: serif ---------- */
+.claude-voice {
+  font-family: var(--font-copernicus, var(--font-instrument-serif));
+}
+
+/* ---------- Custom scrollbars ---------- */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(112, 110, 105, 0.35) transparent;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(112, 110, 105, 0.35);
+  border-radius: 999px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(112, 110, 105, 0.55);
+}
+
+/* ---------- Animations ---------- */
+@keyframes thinking-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1); }
+}
+.thinking-dot {
+  animation: thinking-pulse 1.2s ease-in-out infinite;
+}
+.thinking-dot:nth-child(2) { animation-delay: 0.15s; }
+.thinking-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes caret-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.stream-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--primary);
+  animation: caret-blink 0.9s step-end infinite;
+  border-radius: 1px;
+}
+
+@keyframes fade-slide-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-slide-up {
+  animation: fade-slide-up 0.25s ease-out both;
+}
+
+@keyframes shimmer-x {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--muted-foreground) 0%,
+    var(--foreground) 40%,
+    var(--muted-foreground) 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-x 2.4s linear infinite;
+}
+
+/* ---------- Prose (assistant markdown) — Claude's serif voice, 16px/1.5 ---------- */
+.assistant-prose {
+  font-family: var(--font-copernicus, var(--font-instrument-serif));
+  font-size: 1rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.assistant-prose > *:first-child { margin-top: 0; }
+.assistant-prose > *:last-child { margin-bottom: 0; }
+.assistant-prose p { margin: 0.75em 0; }
+.assistant-prose h1, .assistant-prose h2, .assistant-prose h3, .assistant-prose h4 {
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 1.5em 0 0.55em;
+  letter-spacing: -0.005em;
+}
+.assistant-prose h1 { font-size: 1.45em; }
+.assistant-prose h2 { font-size: 1.28em; }
+.assistant-prose h3 { font-size: 1.12em; }
+.assistant-prose ul, .assistant-prose ol {
+  margin: 0.75em 0;
+  padding-left: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+}
+.assistant-prose ul { list-style: disc; }
+.assistant-prose ol { list-style: decimal; }
+.assistant-prose li::marker {
+  color: var(--muted-foreground);
+}
+.assistant-prose a {
+  color: var(--clay-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(217, 119, 87, 0.5);
+}
+.assistant-prose blockquote {
+  border-left: 2px solid var(--primary);
+  padding: 0.1em 0 0.1em 1em;
+  margin: 1em 0;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+.assistant-prose code:not(pre code) {
+  font-family: var(--font-geist-mono);
+  font-size: 0.85em;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+}
+.assistant-prose pre {
+  background: #1f1e1d;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1em 0;
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+.dark .assistant-prose pre {
+  background: #1a1a19;
+}
+.assistant-prose pre code {
+  font-family: var(--font-geist-mono);
+  color: #e1e0d9;
+}
+.assistant-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.88em;
+}
+.assistant-prose th, .assistant-prose td {
+  border: 1px solid var(--border);
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+.assistant-prose th {
+  background: var(--secondary);
+  font-weight: 600;
+}
+.assistant-prose hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5em 0;
+}
+.assistant-prose strong { font-weight: 650; }
+
+/* GFM: task lists, tables, images, nested lists, strikethrough */
+.assistant-prose ul.contains-task-list,
+.assistant-prose li.task-list-item {
+  list-style: none;
+}
+.assistant-prose li.task-list-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+.assistant-prose li.task-list-item > input[type="checkbox"] {
+  margin: 0;
+  translate: 0 2px;
+  accent-color: var(--primary);
+}
+.assistant-prose ul ul,
+.assistant-prose ol ol,
+.assistant-prose ul ol,
+.assistant-prose ol ul {
+  margin: 0.35em 0 0;
+}
+.assistant-prose tbody tr:nth-child(even) {
+  background: color-mix(in oklab, var(--secondary) 40%, transparent);
+}
+.assistant-prose del {
+  color: var(--muted-foreground);
+}
+.assistant-prose img {
+  max-width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+/* User bubble variant — serif voice, compact bubble scale */
+.assistant-prose.prose-user {
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.assistant-prose.prose-user > *:first-child { margin-top: 0; }
+.assistant-prose.prose-user > *:last-child { margin-bottom: 0; }
+.assistant-prose.prose-user p { margin: 0.5em 0; }
+.assistant-prose.prose-user h1,
+.assistant-prose.prose-user h2,
+.assistant-prose.prose-user h3 {
+  font-size: 1.05em;
+  margin: 0.9em 0 0.4em;
+}
+.assistant-prose.prose-user pre {
+  margin: 0.6em 0;
+  padding: 0.75rem;
+  font-size: 0.82rem;
+}
+.assistant-prose.prose-user blockquote {
+  margin: 0.6em 0;
+}
+
+/* Thinking-trace variant — muted, compact */
+.assistant-prose.prose-thinking {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.assistant-prose.prose-thinking > *:first-child { margin-top: 0; }
+.assistant-prose.prose-thinking > *:last-child { margin-bottom: 0; }
+.assistant-prose.prose-thinking p { margin: 0.4em 0; }
+.assistant-prose.prose-thinking code:not(pre code) {
+  font-size: 0.9em;
+}
+.assistant-prose.prose-thinking pre {
+  margin: 0.5em 0;
+  padding: 0.65rem;
+  font-size: 0.78rem;
+}
+
+/* ---------- In-chat search highlighting ---------- */
+mark {
+  background: rgba(217, 119, 87, 0.26);
+  color: inherit;
+  border-radius: 4px;
+  padding: 0.05em 0.15em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+:root:not(.dark) mark {
+  background: rgba(217, 119, 87, 0.22);
+}
+
+@keyframes match-flash {
+  0% {
+    background-color: rgba(217, 119, 87, 0.2);
+    box-shadow: inset 0 0 0 1px rgba(217, 119, 87, 0.45);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px transparent;
+  }
+}
+.match-flash {
+  animation: match-flash 1.4s ease-out 1 both;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .thinking-dot,
+  .shimmer-text,
+  .stream-caret,
+  .match-flash {
+    animation: none;
+  }
+  .shimmer-text {
+    background: none;
+    color: var(--muted-foreground);
+    -webkit-background-clip: initial;
+    background-clip: initial;
+  }
+  .stream-caret {
+    opacity: 1;
+    background: var(--primary);
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

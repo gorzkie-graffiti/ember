@@ -1,0 +1,60 @@
+# Build caches and generated files
+.cache
+.next
+dist
+build
+public/static
+
+# Dependencies
+node_modules
+npm-debug.log
+
+# Logs and debug output
+*.log
+dev.log
+
+# IDE / editor files
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.sln
+*.swp
+
+# OS / system files
+.DS_Store
+Thumbs.db
+*.orig
+*.rej
+*.bak
+*.tmp
+nohup.out
+
+# Git metadata (already ignored by Git)
+.git
+db/custom.db
+*.tmp
+
+# env
+.env
+
+# TypeScript incremental build
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# whatever .freebuff is (i don't want to know)
+.freebuff
+
+# agents dir if you don't want that committed
+.agents
+
+# dev stuff
+Claude Webpage
+
+# Android / Gradle
+.gradle/
+android/.gradle/
+
+# Compiled Java artifacts
+*.class
+build_pre/

@@ -1,0 +1,8 @@
+MIDlet-Name: EmberVeer
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: Ember
+MIDlet-1: EmberVeer, , EmberVeer
+MicroEdition-Profile: MIDP-2.0
+MicroEdition-Configuration: CLDC-1.1
+MIDlet-Jar-URL: EmberVeer.jar
+MIDlet-Jar-Size: 11415

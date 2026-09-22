@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="576" viewBox="0 0 1024 576" role="img" aria-labelledby="title desc">
+  <title id="title">Neon green network inside a hexagon</title>
+  <desc id="desc">A glowing lime node network enclosed in a white outlined hexagon on a transparent background.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#343434" stop-opacity=".88"/>
+      <stop offset=".5" stop-color="#191919" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#0b0b0b" stop-opacity=".96"/>
+    </linearGradient>
+    <linearGradient id="base" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#9eed00"/>
+      <stop offset=".18" stop-color="#6ead00"/>
+      <stop offset=".76" stop-color="#4a7900"/>
+      <stop offset="1" stop-color="#274800"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#d3ff45"/>
+      <stop offset=".5" stop-color="#84dc00"/>
+      <stop offset="1" stop-color="#4a8000"/>
+    </linearGradient>
+    <radialGradient id="orb" cx="32%" cy="23%" r="76%">
+      <stop offset="0" stop-color="#dbff76"/>
+      <stop offset=".25" stop-color="#9ef11b"/>
+      <stop offset=".7" stop-color="#62b700"/>
+      <stop offset="1" stop-color="#367300"/>
+    </radialGradient>
+    <filter id="softGlow" x="-45%" y="-45%" width="190%" height="190%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="nodeShadow" x="-80%" y="-80%" width="260%" height="260%">
+      <feDropShadow dx="-6" dy="8" stdDeviation="4" flood-color="#000" flood-opacity=".82"/>
+    </filter>
+    <filter id="baseGlow" x="-30%" y="-60%" width="160%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- translucent plinth -->
+  <g filter="url(#baseGlow)">
+    <path d="M350 365 512 453 675 365 675 404 512 495 350 404Z" fill="url(#base)" opacity=".84"/>
+    <path d="M350 365 512 453 675 365 665 357 512 438 360 357Z" fill="#5a9b00"/>
+    <path d="M350 365 512 453 675 365 675 383 512 473 350 383Z" fill="none" stroke="url(#edge)" stroke-width="3" opacity=".95"/>
+    <path d="M512 453V495M350 404l162 91 163-91" fill="none" stroke="#b8f927" stroke-width="2" opacity=".6"/>
+  </g>
+
+  <!-- dark glass face -->
+  <path d="M512 61 675 156 675 343 512 437 349 343 349 156Z" fill="url(#panel)" stroke="#060606" stroke-width="5"/>
+
+  <!-- network links -->
+  <g fill="none" stroke-linecap="round" filter="url(#softGlow)">
+    <g stroke="#3c7000" stroke-width="8" opacity=".7">
+      <path d="M512 148 423 198 512 250 601 198 512 148 601 301 512 350 423 301 512 250 512 350 512 148"/>
+      <path d="M423 198 512 350 601 198M512 148 423 301M512 148 601 301M423 198 601 301M601 198 423 301"/>
+    </g>
+    <g stroke="#9ced14" stroke-width="4">
+      <path d="M512 148 423 198 512 250 601 198 512 148 601 301 512 350 423 301 512 250 512 350 512 148"/>
+      <path d="M423 198 512 350 601 198M512 148 423 301M512 148 601 301M423 198 601 301M601 198 423 301"/>
+    </g>
+    <g stroke="#d4ff55" stroke-width="1.2" opacity=".8">
+      <path d="M512 148 423 198 512 250 601 198 512 148M423 198 512 350 601 198"/>
+    </g>
+  </g>
+
+  <!-- white hex outline, broken at the three joins -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)">
+    <path d="M396 181 349 156 512 61 675 156 627 181" stroke="#e9e9e6" stroke-width="6"/>
+    <path d="M675 156 675 343 530 426" stroke="#f7f7f4" stroke-width="6"/>
+    <path d="M494 426 349 343 349 156" stroke="#f7f7f4" stroke-width="6"/>
+    <path d="M512 383V429" stroke="#fafaf7" stroke-width="6"/>
+  </g>
+
+  <!-- nodes -->
+  <g fill="url(#orb)" stroke="#78ca09" stroke-width="2" filter="url(#nodeShadow)">
+    <circle cx="512" cy="148" r="20"/>
+    <circle cx="423" cy="198" r="19"/>
+    <circle cx="601" cy="198" r="19"/>
+    <circle cx="512" cy="250" r="19"/>
+    <circle cx="423" cy="301" r="19"/>
+    <circle cx="601" cy="301" r="19"/>
+    <circle cx="512" cy="350" r="20"/>
+  </g>
+  <g fill="#efffb5" opacity=".82">
+    <circle cx="506" cy="141" r="3"/><circle cx="417" cy="192" r="2.6"/><circle cx="595" cy="192" r="2.6"/>
+    <circle cx="506" cy="243" r="2.6"/><circle cx="417" cy="295" r="2.6"/><circle cx="595" cy="295" r="2.6"/><circle cx="506" cy="343" r="3"/>
+  </g>
+</svg>

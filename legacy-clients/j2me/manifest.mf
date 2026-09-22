@@ -1,0 +1,7 @@
+MIDlet-Name: EmberVeer
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: Ember
+MIDlet-1: EmberVeer, , EmberVeer
+MIDlet-Description: Ember chat client for MIDP 2.0 phones
+MicroEdition-Profile: MIDP-2.0
+MicroEdition-Configuration: CLDC-1.1
