@@ -1,52 +1,89 @@
-# Build caches and generated files
-.cache
-.next
-dist
-build
-public/static
-
-# Dependencies
-node_modules
-npm-debug.log
-
-# Logs and debug output
-*.log
-dev.log
-
-# IDE / editor files
-.vscode
-.idea
-*.suo
-*.ntvs*
-*.sln
-*.swp
-
-# OS / system files
-.DS_Store
-Thumbs.db
-*.orig
-*.rej
-*.bak
-*.tmp
-nohup.out
-
-# Git metadata (already ignored by Git)
-.git
-db/custom.db
-*.tmp
-
-# env
 .env
-
-# TypeScript incremental build
-tsconfig.tsbuildinfo
-*.tsbuildinfo
-
-# whatever .freebuff is (i don't want to know)
-.freebuff
-
-# agents dir if you don't want that committed
+node_modules
 .agents
+.freebuff
+.next
+dev.log
+nohup.out
+server.log
 
-# dev stuff
-Claude Webpage
+# --- Secrets / credentials ---
+.env
+.env.*
+!.env.example
+
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+service-account*.json
+*-service-account*.json
+gcp-*.json
+google-credentials*.json
+credentials.json
+secrets.json
+secrets/
+config/secrets.yml
+
+# Rails-style secrets, if relevant
+config/master.key
+config/credentials/*.key
+
+# --- Local databases / SQLite ---
+db/custom.db
+db/*.db
+db/*.sqlite
+db/*.sqlite3
+
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# --- Local config ---
+config/local.*
+local.*
+
+# --- Local database (contains secrets) ---
+db/custom.db
+db/*.db
+db/*.sqlite
+db/*.sqlite3
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+service-account*.json
+google-credentials*.json
+credentials.json
+secrets.json
+
+# --- Android / Gradle build output ---
+build/
+*/build/
+.gradle/
+app/build/
+local.properties
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+captures/
+.externalNativeBuild/
+.cxx/
