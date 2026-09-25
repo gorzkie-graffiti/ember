@@ -50,11 +50,3 @@ tsconfig.tsbuildinfo
 
 # dev stuff
 Claude Webpage
-
-# Android / Gradle
-.gradle/
-android/.gradle/
-
-# Compiled Java artifacts
-*.class
-build_pre/
