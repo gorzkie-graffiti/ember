@@ -152,3 +152,18 @@ bun run start        # serves the standalone build
 - **"No vision model is connected"** when attaching an image → add a key for
   a vision-capable provider (e.g. `G4F_API_KEY`) and restart.
 - **Port 3000 busy** → `PORT=3001 bun run dev` (or edit the `dev` script).
+
+## License
+
+Ember is licensed under the [GNU Affero General Public License v3.0 or later](LICENSE)
+(AGPL-3.0-or-later).
+
+You may self-host, modify, and redistribute it. If you run a modified version as a
+network service, the AGPL requires you to publish the complete corresponding source
+of that version under the same license.
+
+**Commercial use.** Commercial use is permitted only if you comply with the AGPL —
+which, for a network service, means publishing your modified source under the AGPL.
+If you want to use Ember in a closed-source product or a commercial service without
+those source-disclosure obligations, you need a separate commercial license from the
+maintainer.
