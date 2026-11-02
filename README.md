@@ -155,15 +155,13 @@ bun run start        # serves the standalone build
 
 ## License
 
-Ember is licensed under the [GNU Affero General Public License v3.0 or later](LICENSE)
-(AGPL-3.0-or-later).
+Ember is **source-available, not open source**. It is licensed under the
+[Noncommercial Copyleft License 1.0](LICENSE).
 
-You may self-host, modify, and redistribute it. If you run a modified version as a
-network service, the AGPL requires you to publish the complete corresponding source
-of that version under the same license.
+- **No commercial use.** You may not sell, host for a fee, bundle Ember into a
+  paid product, or use it in the operation of a for-profit business.
+- **No closed source.** Any modified version you distribute or host must be
+  released in full under the same license, with complete source code.
 
-**Commercial use.** Commercial use is permitted only if you comply with the AGPL —
-which, for a network service, means publishing your modified source under the AGPL.
-If you want to use Ember in a closed-source product or a commercial service without
-those source-disclosure obligations, you need a separate commercial license from the
+Commercial rights are available only under a separate written agreement with the
 maintainer.
