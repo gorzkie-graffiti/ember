@@ -156,10 +156,12 @@ bun run start        # serves the standalone build
 ## License
 
 Ember is **source-available, not open source**. It is licensed under the
-[Noncommercial Copyleft License 1.0](LICENSE).
+[Noncommercial Copyleft License 1.1](LICENSE).
 
-- **No commercial use.** You may not sell, host for a fee, bundle Ember into a
-  paid product, or use it in the operation of a for-profit business.
+- **No paid commercial use.** You may not sell Ember, charge for access or
+  hosting, offer paid support based on it, or bundle it into a paid product.
+  Internal use, evaluation, prototypes, and personal/hobby projects are fine —
+  including at for-profit companies.
 - **No closed source.** Any modified version you distribute or host must be
   released in full under the same license, with complete source code.
 
