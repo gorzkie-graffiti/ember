@@ -1,6 +1,6 @@
 # Ember — AI Chat (self-hosted)
 
-(archived do to no maintance and users)
+(archived due to no maintenance and users)
 A Claude-style AI chat app: real streaming, vision, persistent memory,
 artifacts, and a multi-provider model picker.
 
